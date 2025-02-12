@@ -18,6 +18,9 @@ app.get("/", (req, res) => {
     res.render("index");
 })
 
+app.get("/cadastro", (req, res) => {
+    res.render("cadastro");
+})
 
 
 app.listen(3000, () => {
