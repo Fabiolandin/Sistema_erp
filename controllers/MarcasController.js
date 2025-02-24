@@ -6,3 +6,10 @@ const router = express.Router();
 router.get("/marcas", (req, res) => {
     res.send("Rota de Marcas")
 });
+
+//rota para criar nova marca
+router.get("/admin/marcas/new", (req, res) =>{
+    res.send("Rota para criar nova categoria!")
+})
+
+module.exports = router;

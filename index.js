@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 const connection = require("./database/database");
 
+//importando controllers
+const marcasController = require("./controllers/MarcasController");
+const produtosController = require("./controllers/ProdutosController");
+
 //configurando view ejs como view engine
 app.set("view engine", "ejs");
 
@@ -29,6 +33,10 @@ connection
 app.get("/", (req, res) => {
     res.render("index");
 })
+
+//dizendo para aplicação que quero utilizar as rotas que estão dentro desses imports
+app.use("/", marcasController);
+app.use("/", produtosController);
 
 //rota cadastro
 app.get("/cadastro", (req, res) => {
