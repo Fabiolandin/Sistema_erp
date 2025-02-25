@@ -9,7 +9,7 @@ router.get("/marcas", (req, res) => {
 
 //rota para criar nova marca
 router.get("/admin/marcas/new", (req, res) =>{
-    res.send("Rota para criar nova categoria!")
+    res.render("admin/marcas/new")
 })
 
 module.exports = router;
