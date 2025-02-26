@@ -1,0 +1,29 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <h2>Marcas</h2>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Slug</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% marcas.forEach(marcas => { %>
+            <tr>
+                    <th><%= marcas.id %></th>
+                    <th><%= marcas.name %></th>
+                    <th><%= marcas.slug %></th>
+                    <th>Ações</th>
+            </tr>
+              <%  })%>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %> 
