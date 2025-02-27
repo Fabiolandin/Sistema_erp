@@ -3,6 +3,7 @@
 <div class="container">
     <hr>
     <h2>Marcas</h2>
+    <a class="btn btn-success" href="/admin/marcas/new">Criar nova categoria</a>
     <hr>
     <table class="table table-bordered">
         <thead>
@@ -19,7 +20,10 @@
                     <th><%= marcas.id %></th>
                     <th><%= marcas.name %></th>
                     <th><%= marcas.slug %></th>
-                    <th>Ações</th>
+                    <th>
+                        <button class="btn btn-warning">Editar</button>
+                        <button class="btn btn-danger">Deletar</button>
+                    </th>
             </tr>
               <%  })%>
         </tbody>
