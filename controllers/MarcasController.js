@@ -33,11 +33,16 @@ router.post("/marcas/save", (req, res) =>{
 
 //rota para visualizar listagem de marcas
 router.get("/admin/marcas", (req, res) => {
-
+    //buscando por todas as marcas e exibindo
     Marca.findAll().then(marcas => {
         res.render("admin/marcas/index", {marcas: marcas})
     })
 });
+
+router.post("/marcas/delete", (req, res) => {
+    var id = req.body.id;
+    
+})
 
 
 module.exports = router;
