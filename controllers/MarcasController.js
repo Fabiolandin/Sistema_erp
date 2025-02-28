@@ -41,8 +41,24 @@ router.get("/admin/marcas", (req, res) => {
 
 router.post("/marcas/delete", (req, res) => {
     var id = req.body.id;
+    if(id != undefined){
+        if(isNaN(id)){
+            //deleteando caso o id seja igual o id recebido
+            Marca.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect("/admin/marcas");
+            });
+        }else{
+            res.redirect("/admin/marcas");
+        }
+    }else{
+        res.redirect("/admin/marcas");
+    }
     
-})
+});
 
 
 module.exports = router;

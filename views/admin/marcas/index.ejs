@@ -22,7 +22,12 @@
                     <th><%= marcas.slug %></th>
                     <th>
                         <button class="btn btn-warning">Editar</button>
-                        <button class="btn btn-danger">Deletar</button>
+
+                        <form method="POST" action="/marcas/delete" style="display: inline;">
+                            <!– botão que dinamicamente envia o id pra rota delete–>
+                            <input type="hidden" name="id" value="<%= marcas.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
                     </th>
             </tr>
               <%  })%>
