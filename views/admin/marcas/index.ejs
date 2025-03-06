@@ -3,7 +3,7 @@
 <div class="container">
     <hr>
     <h2>Marcas</h2>
-    <a class="btn btn-success" href="/admin/marcas/new">Criar nova categoria</a>
+    <a class="btn btn-success" href="/admin/marcas/new">Criar nova Marca</a>
     <hr>
     <table class="table table-bordered">
         <thead>
@@ -24,7 +24,7 @@
                         <button class="btn btn-warning">Editar</button>
 
                         <form method="POST" action="/marcas/delete" style="display: inline;">
-                            <!– botão que dinamicamente envia o id pra rota delete–>
+                            <!-- botão que dinamicamente envia o id pra rota delete -->
                             <input type="hidden" name="id" value="<%= marcas.id %>">
                             <button class="btn btn-danger">Deletar</button>
                         </form>
