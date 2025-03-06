@@ -23,7 +23,7 @@
                     <th>
                         <button class="btn btn-warning">Editar</button>
 
-                        <form method="POST" action="/marcas/delete" style="display: inline;">
+                        <form method="POST" action="/marcas/delete" style="display: inline" onsubmit="confirmarDelecao(event, this)">
                             <!-- botão que dinamicamente envia o id pra rota delete -->
                             <input type="hidden" name="id" value="<%= marcas.id %>">
                             <button class="btn btn-danger">Deletar</button>
@@ -36,3 +36,13 @@
 </div>
 
 <%- include('../../partials/footer.ejs') %> 
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar esta Marca?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
