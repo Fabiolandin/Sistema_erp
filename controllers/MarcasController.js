@@ -69,6 +69,23 @@ router.post("/marcas/delete", (req, res) => {
     }
 });
 
-
+router.get("/admin/marcas/edit/:id", (req, res) =>{
+    var id = req.params.id;
+    
+    if(isNaN(id)){
+    //verificando se id não é um numero
+    res.redirect("/admin/marcas");
+}
+    Marca.findByPk(id).then(marca => {
+        if(marca != undefined){
+            //se a marca for achada
+            res.render("admin/marcas/edit", {marcas: marcas})
+        }else{
+            res.redirect("/admin/marcas")
+        }
+    }).catch(err => {
+        res.redirect("/admin/marcas");
+    })
+});
 
 module.exports = router;
