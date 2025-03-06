@@ -41,20 +41,30 @@ router.get("/admin/marcas", (req, res) => {
 
 router.post("/marcas/delete", (req, res) => {
     var id = req.body.id;
-    console.log("ID recebido para deletar:", id);  // Verifique o valor aqui
+    console.log("ID recebido para deletar:", id);
+
+    // Verifica se o 'id' não está indefinido e se é um número (para garantir que seja um ID válido)
     if (id != undefined && !isNaN(id)) {
+        
+        // Utiliza o método destroy para deletar o registro da tabela "Marca" no banco de dados, onde o ID do registro é igual ao ID recebido
         Marca.destroy({
             where: {
                 id: id
             }
-        }).then(() => {
+        })
+        // Se a exclusão for bem-sucedida, executa o código dentro do 'then'
+        .then(() => {
+            // Exibe no console uma mensagem indicando que a exclusão foi bem-sucedida
             console.log("Marca deletada com sucesso.");
             res.redirect("/admin/marcas");
-        }).catch((error) => {
+        })
+        // Se houver um erro na exclusão
+        .catch((error) => {
             console.log("Erro ao deletar marca:", error);
             res.redirect("/admin/marcas");
         });
     } else {
+        // Se o ID for indefinido ou não for um número, redireciona de volta para marcas
         res.redirect("/admin/marcas");
     }
 });
