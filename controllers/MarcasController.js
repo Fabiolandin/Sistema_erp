@@ -23,7 +23,7 @@ router.post("/marcas/save", (req, res) =>{
             name: name,
             slug: slugify(name)
         }).then(() =>{
-            res.redirect("/");
+            res.redirect("/admin/marcas");
         })
 
     }else{
@@ -79,13 +79,28 @@ router.get("/admin/marcas/edit/:id", (req, res) =>{
     Marca.findByPk(id).then(marca => {
         if(marca != undefined){
             //se a marca for achada
-            res.render("admin/marcas/edit", {marcas: marcas})
+            res.render("admin/marcas/edit", {marca: marca})
         }else{
             res.redirect("/admin/marcas")
         }
-    }).catch(err => {
+    }).catch(erro => {
         res.redirect("/admin/marcas");
     })
 });
+
+
+router.post("/marcas/update", (req, res) =>{
+    var id = req.body.id;
+    var name = req.body.name;
+
+    //atualizando titulo de uma categoria que tenha este ID
+    Marca.update({name: name, slug:slugify(name)}, {
+        where: {
+            id: id
+        }
+    }).then(() => {
+        res.redirect("/admin/marcas");
+    })
+})
 
 module.exports = router;

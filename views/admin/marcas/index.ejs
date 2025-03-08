@@ -21,7 +21,8 @@
                     <th><%= marcas.name %></th>
                     <th><%= marcas.slug %></th>
                     <th>
-                        <button class="btn btn-warning">Editar</button>
+
+                        <a href="/admin/marcas/edit/<%= marcas.id %>" class="btn btn-warning">Editar</a>
 
                         <form method="POST" action="/marcas/delete" style="display: inline" onsubmit="confirmarDelecao(event, this)">
                             <!-- botão que dinamicamente envia o id pra rota delete -->

@@ -7,13 +7,13 @@
             <h2> Edição de Marca</h2>
         </div>
     <div class="card-boy">
-    <form method="POST" action="/marcas/save">
-        <input class="form-control" type="text" name="name" placeholder="Defina o nome da Marca"><br>
+
+    <form method="POST" action="/marcas/update">
+        <input type="hidden" name="id" value="<%= marca.id %>">
+        <input class="form-control" type="text" name="name" placeholder="Defina o nome da Marca" value="<%= marca.name %>"><br>
         <button class="btn btn-success">Atualizar</button>
+    </form>
 
-
-
-            </form>
         </div>
     </div>
 </div>
