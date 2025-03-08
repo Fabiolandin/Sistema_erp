@@ -1,0 +1,53 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <h2>Produtos</h2>
+    <a class="btn btn-success" href="/admin/produtos/new">Criar novo Produto</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Slug</th>
+                <th>Id Marca</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% produtos.forEach(produtos => { %>
+            <tr>
+                    <th><%= produtos.id %></th>
+                    <th><%= produtos.name %></th>
+                    <th><%= produtos.description %></th>
+                    <th><%= produtos.slug %></th>
+                    <th><%= produtos.marcaId %></th>
+                    <th>
+
+                        <a href="/admin/produtos/edit/<%= produtos.id %>" class="btn btn-warning">Editar</a>
+
+                        <form method="POST" action="/produtos/delete" style="display: inline" onsubmit="confirmarDelecao(event, this)">
+                            <!-- botão que dinamicamente envia o id pra rota delete -->
+                            <input type="hidden" name="id" value="<%= produtos.id %>">
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
+                    </th>
+            </tr>
+              <%  })%>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %> 
+
+<script>
+    function confirmarDelecao(event, form){
+        event.preventDefault();
+        var decision = confirm("Você quer deletar esta Marca?");
+        if(decision){
+            form.submit();
+        }
+    }
+</script>

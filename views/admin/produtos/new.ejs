@@ -1,0 +1,26 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2> Cadastro de Produto</h2>
+        </div>
+    <div class="card-boy">
+    <form method="POST" action="/produtos/save">
+
+        <input class="form-control" type="text" name="name" placeholder="Defina o nome do Produto"><br>
+
+        <input class="form-control" type="text" name="description" placeholder="Descrição do produto"><br>
+
+        <input class="form-control" type="number" step="0.01" name="value" placeholder="Valor do produto"><br>
+
+        <button class="btn btn-success">Cadastrar</button>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../../partials/footer.ejs') %> 
