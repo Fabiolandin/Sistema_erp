@@ -43,4 +43,45 @@ router.get("/admin/produtos", (req, res) => {
     })
 });
 
+//delete
+
+
+//EDIT E UPDATE DE PRODUTOS
+
+router.get("/admin/produtos/edit/:id", (req, res) =>{
+    var id = req.params.id;
+
+    if(isNaN(id)){
+        //verificando se id não é um número
+        res.redirect("/admin/produtos")
+    }
+
+    Produto.findByPk(id).then(produto => {
+        if(produto != undefined){
+            //se o produto for achado
+            res.render("admin/produtos/edit", {produto: produto})
+        }else{
+            res.redirect("/admin/produtos")
+        }
+    }).catch(erro => {
+        res.redirect("/admin/produtos")
+    })
+});
+
+router.post("/produtos/update", (req, res) => {
+    var id = req.body.id;
+    var name = req.body.name;
+    var description = req.body.description;
+    var value = req.body.value;
+
+    //Atualizando produto que tenha o id
+    Produto.update({name: name, description: description, value: value, slug:slugify(name)},{
+        where: {
+            id: id
+        }
+    }).then(() => {
+        res.redirect("/admin/produtos")
+    })
+})
+
 module.exports = router;
