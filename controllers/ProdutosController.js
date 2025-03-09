@@ -44,6 +44,31 @@ router.get("/admin/produtos", (req, res) => {
 });
 
 //delete
+router.post("/produtos/delete", (req, res) => {
+    var id = req.body.id;
+    // Verifica se o 'id' não está indefinido e se é um número (para garantir que seja um ID válido)
+    if (id != undefined && !isNaN(id)) {
+        
+        // Utiliza o método destroy para deletar
+        Produto.destroy({
+            where: {
+                id: id
+            }
+        })
+        // Se a exclusão for bem-sucedida, executa o código dentro do 'then'
+        .then(() => {
+            res.redirect("/admin/produtos");
+        })
+        // Se houver um erro na exclusão
+        .catch((error) => {
+            console.log("Erro ao deletar marca:", error);
+            res.redirect("/admin/produtos");
+        });
+    } else {
+        res.redirect("/admin/produtos");
+    }
+});
+
 
 
 //EDIT E UPDATE DE PRODUTOS
