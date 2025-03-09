@@ -15,6 +15,12 @@
 
         <input class="form-control" type="number" step="0.01" name="value" placeholder="Valor do produto"><br>
 
+        <label>Marca</label>
+        <select name="marca" class="form-control">
+            <% marca.forEach((marca) => { %>
+                <option value="<%= marca.id %>"><%= marca.name %></option>
+            <% }) %>
+        </select>
         <button class="btn btn-success">Cadastrar</button>
 
 

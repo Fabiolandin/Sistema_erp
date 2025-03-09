@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const Produto = require("../produtos/Produto");
+const Marca = require("../marcas/Marca");
 const slugify = require("slugify");
 
 router.get("/produtos", (req, res) => {
@@ -11,21 +12,27 @@ router.get("/produtos", (req, res) => {
 
 //rota para criar novo produto
 router.get("/admin/produtos/new", (req, res) =>{
-    res.render("admin/produtos/new");
+    Marca.findAll().then(marca => {
+        res.render("admin/produtos/new", {marca: marca});
+    })
+    
 })
 
 //salvando produto no banco
 router.post("/produtos/save", (req, res) => {
+    console.log(req.body);
     var name = req.body.name;
     var description = req.body.description;
     var value = req.body.value;
+    var marca = req.body.marca;
     if(name != undefined){
 
         Produto.create({
             name: name,
             description: description,
             value: value,
-            slug: slugify(name)
+            slug: slugify(name),
+            marcaId: marca
         }).then(() =>{
             res.redirect("/admin/produtos");
         })
