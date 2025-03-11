@@ -20,7 +20,7 @@ router.get("/admin/produtos/new", (req, res) =>{
 
 //salvando produto no banco
 router.post("/produtos/save", (req, res) => {
-    console.log(req.body);
+
     var name = req.body.name;
     var description = req.body.description;
     var value = req.body.value;
