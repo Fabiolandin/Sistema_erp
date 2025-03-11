@@ -45,7 +45,9 @@ router.post("/produtos/save", (req, res) => {
 //rotas para visualizar produtos
 router.get("/admin/produtos", (req, res) => {
     //buscando todos os produtos e exibindo
-    Produto.findAll().then(produtos =>{
+    Produto.findAll({
+        include:[{model: Marca}]
+    }).then(produtos =>{
         res.render("admin/produtos/index", {produtos:produtos})
     })
 });
