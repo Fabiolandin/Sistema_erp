@@ -6,6 +6,7 @@ const connection = require("./database/database");
 //importando controllers
 const marcasController = require("./controllers/MarcasController");
 const produtosController = require("./controllers/ProdutosController");
+const usersController = require("./controllers/UsersController");
 
 const Produto = require("./produtos/Produto");
 const Marca = require("./marcas/Marca");
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 //dizendo para aplicação que quero utilizar as rotas que estão dentro desses imports
 app.use("/", marcasController);
 app.use("/", produtosController);
+app.use("/", usersController);
 
 //rota cadastro
 app.get("/cadastro", (req, res) => {
