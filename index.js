@@ -10,6 +10,7 @@ const usersController = require("./controllers/UsersController");
 
 const Produto = require("./produtos/Produto");
 const Marca = require("./marcas/Marca");
+const User = require("./users/User");
 
 //configurando view ejs como view engine
 app.set("view engine", "ejs");

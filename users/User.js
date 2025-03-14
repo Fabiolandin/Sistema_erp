@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
 
-const Users = connection.define('users',{
+const User = connection.define('users',{
     email:{
         type: Sequelize.STRING,
         allowNull: false
@@ -13,4 +13,4 @@ const Users = connection.define('users',{
 
 //User.sync({force: true});
 
-module.exports = Users;
+module.exports = User;
