@@ -1,19 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../users/User");
+const bcrypt = require("bcryptjs");
 
+//rota para listagem de users
 router.get("/admin/users", (req, res) => {
     res.send("Listagem de usuários")
 
 });
 
+//rota para criação de usuarios
 router.get("/admin/users/create",(req, res) => {
     res.render("admin/users/create");
 })
 
+//rota para criação de users
 router.post("/users/create", (req, res) => {
     var email = req.body.email;
-    var password = req.body.email;
+    var password = req.body.password;
+
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(password, salt);
+
+    User.create({
+        email: email,
+        password: hash
+    }).then(() => {
+        res.redirect("/");
+    }).catch((err) => {
+        res.redirect("/")
+    })
 })
 
 module.exports = router;
