@@ -5,7 +5,9 @@ const bcrypt = require("bcryptjs");
 
 //rota para listagem de users
 router.get("/admin/users", (req, res) => {
-    res.send("Listagem de usuários")
+    User.findAll().then(users => {
+        res.render("admin/users/index",{users: users});
+    });
 
 });
 
@@ -34,7 +36,7 @@ router.post("/users/create", (req, res) => {
             }).catch((err) => {
                 res.redirect("/")
             })
-            
+
         }else{
             //se tiver um email igual redireciona pra pagina de criação novamente
             res.redirect("/admin/users/create");
