@@ -45,4 +45,38 @@ router.post("/users/create", (req, res) => {
 
 })
 
+//criando rota de login
+router.get("/login", (req, res) => {
+    res.render("admin/users/login");
+})
+
+//rota para authenticação de login verificando se 
+router.post("/authenticate", (req, res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+    
+    //email tem que ser igual email e se eu achar o usuario e for diferente de undefined
+    User.findOne({where:{email: email}}).then(user => {
+        if(user != undefined){//se existe usuario com este email
+            //validar senha
+            var correct = bcrypt.compareSync(password, user.password);
+
+            if(correct){//se a senha esta correta!
+                req.session.user = {
+                    id: user.id,
+                    email: user.email
+                }
+            }else{
+                //se não achar manda pra tela de login novamente!
+            res.redirect("/login");
+            }
+
+        }else{
+            //se não achar manda pra tela de login novamente!
+            res.redirect("/login");
+        }
+    })
+
+})
+
 module.exports = router;

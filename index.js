@@ -52,15 +52,6 @@ app.use("/", marcasController);
 app.use("/", produtosController);
 app.use("/", usersController);
 
-app.get("/session", (req, res) => {
-    req.session
-});
-
-
-app.get("/leitura", (req, res) =>{
-
-});
-
 //rota cadastro
 app.get("/cadastro", (req, res) => {
     res.render("cadastro");
