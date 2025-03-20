@@ -1,6 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
+const session = require("express-session");
 const connection = require("./database/database");
 
 //importando controllers
@@ -14,6 +15,13 @@ const User = require("./users/User");
 
 //configurando view ejs como view engine
 app.set("view engine", "ejs");
+
+
+//configurando sessões
+app.use(session({
+    secret: "textsecurity", cookie: {maxAge: 30000000}
+}))
+
 
 
 //configurando body-parser
@@ -43,6 +51,15 @@ app.get("/", (req, res) => {
 app.use("/", marcasController);
 app.use("/", produtosController);
 app.use("/", usersController);
+
+app.get("/session", (req, res) => {
+    req.session
+});
+
+
+app.get("/leitura", (req, res) =>{
+
+});
 
 //rota cadastro
 app.get("/cadastro", (req, res) => {
