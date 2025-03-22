@@ -4,13 +4,18 @@ const express = require("express");
 const router = express.Router();
 const Marca = require("../marcas/Marca");
 const slugify = require("slugify");
+const adminAuth = require("../middlewares/adminAuth");
 
+//rota para visualizar listagem de marcas
 router.get("/marcas", (req, res) => {
-    res.send("Rota de Marcas")
+    //buscando por todas as marcas e exibindo
+    Marca.findAll().then(marcas => {
+        res.render("marcas", {marcas: marcas})
+    })
 });
 
 //rota para criar nova marca
-router.get("/admin/marcas/new", (req, res) =>{
+router.get("/admin/marcas/new", adminAuth, (req, res) =>{
     res.render("admin/marcas/new")
 })
 
@@ -32,7 +37,7 @@ router.post("/marcas/save", (req, res) =>{
 });
 
 //rota para visualizar listagem de marcas
-router.get("/admin/marcas", (req, res) => {
+router.get("/admin/marcas", adminAuth, (req, res) => {
     //buscando por todas as marcas e exibindo
     Marca.findAll().then(marcas => {
         res.render("admin/marcas/index", {marcas: marcas})
@@ -69,7 +74,7 @@ router.post("/marcas/delete", (req, res) => {
     }
 });
 
-router.get("/admin/marcas/edit/:id", (req, res) =>{
+router.get("/admin/marcas/edit/:id", adminAuth, (req, res) =>{
     var id = req.params.id;
     
     if(isNaN(id)){
