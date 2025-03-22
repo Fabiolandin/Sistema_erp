@@ -7,9 +7,16 @@ const Marca = require("../marcas/Marca");
 const slugify = require("slugify");
 const adminAuth = require("../middlewares/adminAuth");
 
+//rotas para visualizar produtos
 router.get("/produtos", (req, res) => {
-    res.send("Rota de Produtos")
+    //buscando todos os produtos e exibindo
+    Produto.findAll({
+        include:[{model: Marca}]
+    }).then(produtos =>{
+        res.render("produtos", {produtos:produtos})
+    })
 });
+
 
 //rota para criar novo produto
 router.get("/admin/produtos/new", adminAuth,(req, res) =>{

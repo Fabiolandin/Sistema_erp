@@ -1,0 +1,32 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <h2>Produtos</h2>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Slug</th>
+                <th>Id Marca</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% produtos.forEach(produtos => { %>
+            <tr>
+                    <th><%= produtos.id %></th>
+                    <th><%= produtos.name %></th>
+                    <th><%= produtos.description %></th>
+                    <th><%= produtos.slug %></th>
+                    <th><%= produtos.marca.name %></th>
+                    <input type="hidden" name="id" value="<%= produtos.id %>">
+            </tr>
+              <%  })%>
+        </tbody>
+    </table>
+</div>
+
+<%- include('partials/footer.ejs') %> 
