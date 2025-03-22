@@ -19,9 +19,15 @@ app.set("view engine", "ejs");
 
 //configurando sessões
 app.use(session({
-    secret: "textsecurity", cookie: {maxAge: 30000000}
-}))
-
+    secret: "textsecurity",
+    resave: false,  // Impede que a sessão seja salva novamente se não houver modificações
+    saveUninitialized: false,  // Impede que uma sessão vazia seja criada
+    cookie: { 
+        maxAge: 30000000,
+        secure: false,  // Certifique-se de que está "false" se estiver em ambiente de desenvolvimento sem HTTPS
+        httpOnly: true  // Para maior segurança, o cookie não será acessível no front-end
+    }
+}));
 
 
 //configurando body-parser

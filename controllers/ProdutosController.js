@@ -5,13 +5,14 @@ const router = express.Router();
 const Produto = require("../produtos/Produto");
 const Marca = require("../marcas/Marca");
 const slugify = require("slugify");
+const adminAuth = require("../middlewares/adminAuth");
 
 router.get("/produtos", (req, res) => {
     res.send("Rota de Produtos")
 });
 
 //rota para criar novo produto
-router.get("/admin/produtos/new", (req, res) =>{
+router.get("/admin/produtos/new", adminAuth,(req, res) =>{
     Marca.findAll().then(marca => {
         res.render("admin/produtos/new", {marca: marca});
     })
@@ -43,7 +44,7 @@ router.post("/produtos/save", (req, res) => {
 })
 
 //rotas para visualizar produtos
-router.get("/admin/produtos", (req, res) => {
+router.get("/admin/produtos", adminAuth, (req, res) => {
     //buscando todos os produtos e exibindo
     Produto.findAll({
         include:[{model: Marca}]

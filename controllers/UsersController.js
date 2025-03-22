@@ -65,7 +65,10 @@ router.post("/authenticate", (req, res) => {
                 req.session.user = {
                     id: user.id,
                     email: user.email
-                }
+                };
+                console.log("Usuário autenticado:", req.session.user);  // Verifique se a sessão foi criada
+                res.redirect("/admin/users")
+                
             }else{
                 //se não achar manda pra tela de login novamente!
             res.redirect("/login");
