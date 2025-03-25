@@ -26,7 +26,7 @@ router.get("/admin/produtos/new", adminAuth,(req, res) =>{
     
 })
 
-//salvando produto no banco
+//rota para salvar nova marca no banco
 router.post("/produtos/save", (req, res) => {
 
     var name = req.body.name;
@@ -78,7 +78,7 @@ router.post("/produtos/delete", (req, res) => {
         })
         // Se houver um erro na exclusão
         .catch((error) => {
-            console.log("Erro ao deletar marca:", error);
+            console.log("Erro ao deletar Produto:", error);
             res.redirect("/admin/produtos");
         });
     } else {
@@ -90,14 +90,13 @@ router.post("/produtos/delete", (req, res) => {
 
 //EDIT E UPDATE DE PRODUTOS
 
-router.get("/admin/produtos/edit/:id", (req, res) =>{
+router.get("/admin/produtos/edit/:id", adminAuth, (req, res) =>{
     var id = req.params.id;
 
     if(isNaN(id)){
         //verificando se id não é um número
         res.redirect("/admin/produtos")
     }
-
     Produto.findByPk(id).then(produto => {
         if(produto != undefined){
             //se o produto for achado

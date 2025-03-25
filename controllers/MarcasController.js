@@ -19,7 +19,7 @@ router.get("/admin/marcas/new", adminAuth, (req, res) =>{
     res.render("admin/marcas/new")
 })
 
-//rota para o save no banco
+//rota para o salvar a nova marca banco
 router.post("/marcas/save", (req, res) =>{
     var name = req.body.name;
     if(name != undefined){
@@ -44,14 +44,14 @@ router.get("/admin/marcas", adminAuth, (req, res) => {
     })
 });
 
+//delete
 router.post("/marcas/delete", (req, res) => {
     var id = req.body.id;
-    console.log("ID recebido para deletar:", id);
 
     // Verifica se o 'id' não está indefinido e se é um número (para garantir que seja um ID válido)
     if (id != undefined && !isNaN(id)) {
         
-        // Utiliza o método destroy para deletar o registro da tabela "Marca" no banco de dados, onde o ID do registro é igual ao ID recebido
+        // Utiliza o método destroy para deletar
         Marca.destroy({
             where: {
                 id: id
@@ -59,8 +59,6 @@ router.post("/marcas/delete", (req, res) => {
         })
         // Se a exclusão for bem-sucedida, executa o código dentro do 'then'
         .then(() => {
-            // Exibe no console uma mensagem indicando que a exclusão foi bem-sucedida
-            console.log("Marca deletada com sucesso.");
             res.redirect("/admin/marcas");
         })
         // Se houver um erro na exclusão
@@ -69,7 +67,6 @@ router.post("/marcas/delete", (req, res) => {
             res.redirect("/admin/marcas");
         });
     } else {
-        // Se o ID for indefinido ou não for um número, redireciona de volta para marcas
         res.redirect("/admin/marcas");
     }
 });
