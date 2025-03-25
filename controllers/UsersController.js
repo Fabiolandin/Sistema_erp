@@ -66,7 +66,6 @@ router.post("/authenticate", (req, res) => {
                     id: user.id,
                     email: user.email
                 };
-                console.log("Usuário autenticado:", req.session.user);  // Verifique se a sessão foi criada
                 res.redirect("/admin/users")
                 
             }else{
@@ -81,5 +80,11 @@ router.post("/authenticate", (req, res) => {
     })
 
 })
+
+
+    router.get("/logout", (req, res) => {
+        req.session.user = undefined;
+        res.redirect("/");
+    })
 
 module.exports = router;
