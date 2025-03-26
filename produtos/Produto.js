@@ -17,6 +17,9 @@ const Produto = connection.define('produtos',{
     },slug: {
         type: Sequelize.STRING,
         allowNull: false
+    },estoque: {
+        type: Sequelize.INTEGER,
+        allowNull: true
     },marcaId: {
         type: Sequelize.INTEGER,
         allowNull: false

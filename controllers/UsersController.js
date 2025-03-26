@@ -32,7 +32,7 @@ router.post("/users/create", (req, res) => {
                 email: email,
                 password: hash
             }).then(() => {
-                res.redirect("/");
+                res.redirect("/admin/users");
             }).catch((err) => {
                 res.redirect("/")
             })
