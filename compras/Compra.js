@@ -28,6 +28,6 @@ const Compra = connection.define('compras',{
 Produto.hasMany(Compra);  // Um produto pode aparecer em várias compras
 Compra.belongsTo(Produto); // uma compra pertence a um produto
 
-Compra.sync({force: true});
+//Compra.sync({force: true});
 
 module.exports = Compra;

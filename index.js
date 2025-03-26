@@ -8,10 +8,12 @@ const connection = require("./database/database");
 const marcasController = require("./controllers/MarcasController");
 const produtosController = require("./controllers/ProdutosController");
 const usersController = require("./controllers/UsersController");
+const compraController = require("./controllers/ComprasController");
 
 const Produto = require("./produtos/Produto");
 const Marca = require("./marcas/Marca");
 const User = require("./users/User");
+const Compra = require("./compras/Compra");
 
 //configurando view ejs como view engine
 app.set("view engine", "ejs");
