@@ -8,7 +8,7 @@ const connection = require("./database/database");
 const marcasController = require("./controllers/MarcasController");
 const produtosController = require("./controllers/ProdutosController");
 const usersController = require("./controllers/UsersController");
-const compraController = require("./controllers/ComprasController");
+const comprasController = require("./controllers/ComprasController");
 
 const Produto = require("./produtos/Produto");
 const Marca = require("./marcas/Marca");
@@ -59,6 +59,7 @@ app.get("/", (req, res) => {
 app.use("/", marcasController);
 app.use("/", produtosController);
 app.use("/", usersController);
+app.use("/", comprasController);
 
 //rota cadastro
 app.get("/cadastro", (req, res) => {

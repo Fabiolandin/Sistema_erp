@@ -10,7 +10,7 @@
     <form method="POST" action="/compras/save">
         <br>
         <select name="produto" class="form-control">
-            <% produto.forEach((produto) => { %>
+            <% produtos.forEach((produto) => { %>
                 <option value="<%= produto.id %>"><%= produto.name %></option>
             <% }) %>
         </select>
