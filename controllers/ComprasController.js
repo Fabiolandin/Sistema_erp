@@ -12,7 +12,10 @@ router.get("/compras", (req, res) => {
 })
 
 
-//Rota para criar nova compra
-router.get("/admin/compras/new", (req, res) => {
-    res.send("Rota de compras")
-});
+//rota para criar novo produto
+router.get("/admin/compras/new", (req, res) =>{
+    Produto.findAll().then(produto => {
+        res.render("admin/compras/new", {produto: produto});
+    })
+    
+})

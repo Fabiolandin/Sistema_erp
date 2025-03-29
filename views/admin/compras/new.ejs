@@ -1,0 +1,32 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2> Compras </h2>
+        </div>
+    <div class="card-boy">
+    <form method="POST" action="/compras/save">
+        <br>
+        <select name="produto" class="form-control">
+            <% produto.forEach((produto) => { %>
+                <option value="<%= produto.id %>"><%= produto.name %></option>
+            <% }) %>
+        </select>
+
+        <h4>Quantidade:</h4>
+        <input class="form-control" type="number" name="quantidade" placeholder="Quantidade do produto"><br>
+
+        <h4>Valor da Compra:</h4>
+        <input class="form-control" type="text" name="valorTotal" placeholder="Valor total da compra"><br>
+
+        <button class="btn btn-success">Cadastrar</button>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../../partials/footer.ejs') %> 
