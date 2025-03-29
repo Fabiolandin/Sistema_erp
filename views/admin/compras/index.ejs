@@ -1,0 +1,30 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<div class="container">
+    <hr>
+    <h2>Compras</h2>
+    <a class="btn btn-success" href="/admin/compras/new">Criar nova compra</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% compras.forEach(compras => { %>
+            <tr>
+                    <th><%= compras.id %></th>
+                    <th><%= compras.produto.name %></th>
+                    <th><%= compras.quantidade %></th>
+                    <th><%= compras.valorTotal %></th>
+            </tr>
+              <%  })%>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../../partials/footer.ejs') %> 

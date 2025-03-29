@@ -8,7 +8,12 @@ const Compra = require("../compras/Compra");
 
 //Rota para visualizar compras
 router.get("/compras", (req, res) => {
-    res.render("admin/compras");
+    //buscando todas as compras e exibindo
+    Compra.findAll({
+        include:[{model: Produto}]
+    }).then(compras =>{
+        res.render("admin/compras", {compras: compras});
+    })
 })
 
 
@@ -27,7 +32,6 @@ router.get("/admin/compras/new", (req, res) => {
 router.post("/compras/save", (req, res) => {
 
     var produtoId = req.body.produto;
-    var name = req.body.name;
     var quantidade = req.body.quantidade;
     var valorTotal = req.body.valorTotal;
 
