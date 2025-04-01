@@ -12,6 +12,16 @@ router.get("/compras", (req, res) => {
     Compra.findAll({
         include:[{model: Produto}]
     }).then(compras =>{
+        res.render("compras", {compras: compras});
+    })
+})
+
+//Rota para visualizar compras
+router.get("/admin/compras", (req, res) => {
+    //buscando todas as compras e exibindo
+    Compra.findAll({
+        include:[{model: Produto}]
+    }).then(compras =>{
         res.render("admin/compras", {compras: compras});
     })
 })
@@ -47,7 +57,7 @@ router.post("/compras/save", (req, res) => {
                     quantidade: quantidade,
                     valorTotal: valorTotal
                 }).then(() => {
-                    // Atualiza o estoque do produto (provavelmente você quer subtrair a quantidade, não somar)
+                    // Atualiza o estoque do produto se a var produtoId receber um produtoId válido
                     Produto.update({
                         estoque: produto.estoque + quantidade
                     }, {
