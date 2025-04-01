@@ -115,9 +115,10 @@ router.post("/produtos/update", (req, res) => {
     var name = req.body.name;
     var description = req.body.description;
     var value = req.body.value;
+    var estoque = req.body.estoque;
 
     //Atualizando produto que tenha o id
-    Produto.update({name: name, description: description, value: value, slug:slugify(name)},{
+    Produto.update({name: name, description: description, value: value, slug:slugify(name), estoque: estoque,},{
         where: {
             id: id
         }

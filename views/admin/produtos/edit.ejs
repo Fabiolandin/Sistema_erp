@@ -10,9 +10,10 @@
 
     <form method="POST" action="/produtos/update"> 
         <input type="hidden" name="id" value="<%= produto.id %>">
-        <input class="form-control" type="text" name="name" placeholder="Defina o nome da Marca" value="<%= produto.name %>"><br>
-        <input class="form-control" type="text" name="description" placeholder="Defina o nome da Marca" value="<%= produto.description %>"><br>
-        <input class="form-control" type="number" name="value" placeholder="Defina o nome da Marca" value="<%= produto.value %>"><br>
+        <input class="form-control" type="text" name="name" placeholder="Defina o nome do produto" value="<%= produto.name %>"><br>
+        <input class="form-control" type="text" name="description" placeholder="Descrição deste produto" value="<%= produto.description %>"><br>
+        <input class="form-control" type="number" name="estoque" placeholder="Estoque do produto" value="<%= produto.estoque %>"><br>
+        <input class="form-control" type="number" name="value" placeholder="Valor do produto" value="<%= produto.value %>"><br>
         <button class="btn btn-success">Atualizar</button>
     </form>
 

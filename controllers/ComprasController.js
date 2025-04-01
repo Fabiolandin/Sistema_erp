@@ -28,31 +28,50 @@ router.get("/admin/compras/new", (req, res) => {
 });
 
 
-//rota para salvar nova marca no banco
+//rota para salvar nova compra no banco
 router.post("/compras/save", (req, res) => {
 
     var produtoId = req.body.produto;
     var quantidade = req.body.quantidade;
-    var valorTotal = req.body.valorTotal;
 
-    if(produtoId && quantidade && valorTotal){
-
-        Compra.create({
-            produtoId: produtoId,
-            quantidade: quantidade,
-            valorTotal: valorTotal
-        }).then(() =>{
-            res.redirect("/admin/compras");
+    if(produtoId && quantidade){
+        // Busca o produto para obter seu preço
+        Produto.findByPk(produtoId).then(produto => {
+            if (produto) {
+                // Calcula o valor total com base no preço do produto e na quantidade
+                var valorTotal = produto.value * quantidade;
+        
+                // Cria a compra no banco de dados
+                Compra.create({
+                    produtoId: produtoId,
+                    quantidade: quantidade,
+                    valorTotal: valorTotal
+                }).then(() => {
+                    // Atualiza o estoque do produto (provavelmente você quer subtrair a quantidade, não somar)
+                    Produto.update({
+                        estoque: produto.estoque + quantidade
+                    }, {
+                        where: { id: produtoId }
+                    }).then(() => {
+                        res.redirect("/admin/compras");
+                    }).catch(error => {
+                        console.log("Erro ao atualizar estoque:", error);
+                        res.redirect("/admin/compras/new");
+                    });
+                }).catch(error => {
+                    console.log("Erro ao salvar compra:", error);
+                    res.redirect("/admin/compras/new");
+                });
+            } else {
+                res.redirect("/admin/compras/new");
+            }
         }).catch(error => {
-            console.log("Erro ao salvar compra:", error);
+            console.log("Erro ao buscar produto:", error);
             res.redirect("/admin/compras/new");
         });
-    }else{
+    } else {
         res.redirect("/admin/compras/new");
     }
-
-})
-
-
+});
 
 module.exports = router;
