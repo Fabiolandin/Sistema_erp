@@ -7,7 +7,7 @@ const Marca = require("../marcas/Marca");
 const slugify = require("slugify");
 const adminAuth = require("../middlewares/adminAuth");
 
-//rotas para visualizar produtos
+//rotas para visualizar produtos sem login
 router.get("/produtos", (req, res) => {
     //buscando todos os produtos e exibindo
     Produto.findAll({
@@ -51,7 +51,7 @@ router.post("/produtos/save", (req, res) => {
 
 })
 
-//rotas para visualizar produtos
+//rotas para visualizar produtos ADMIN
 router.get("/admin/produtos", adminAuth, (req, res) => {
     //buscando todos os produtos e exibindo
     Produto.findAll({
@@ -61,7 +61,7 @@ router.get("/admin/produtos", adminAuth, (req, res) => {
     })
 });
 
-//delete
+//delete de produtos
 router.post("/produtos/delete", (req, res) => {
     var id = req.body.id;
     // Verifica se o 'id' não está indefinido e se é um número (para garantir que seja um ID válido)
@@ -89,8 +89,7 @@ router.post("/produtos/delete", (req, res) => {
 
 
 
-//EDIT E UPDATE DE PRODUTOS
-
+//EDIT de produtos
 router.get("/admin/produtos/edit/:id", adminAuth, (req, res) =>{
     var id = req.params.id;
 
@@ -110,6 +109,8 @@ router.get("/admin/produtos/edit/:id", adminAuth, (req, res) =>{
     })
 });
 
+
+//Rota para atualizar produtos
 router.post("/produtos/update", (req, res) => {
     var id = req.body.id;
     var name = req.body.name;

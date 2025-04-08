@@ -16,8 +16,8 @@ router.get("/compras", (req, res) => {
     })
 })
 
-//Rota para visualizar compras
-router.get("/admin/compras", (req, res) => {
+//Rota para visualizar compras admin
+router.get("/admin/compras", adminAuth,(req, res) => {
     //buscando todas as compras e exibindo
     Compra.findAll({
         include:[{model: Produto}]
@@ -28,7 +28,7 @@ router.get("/admin/compras", (req, res) => {
 
 
 // Rota para criar nova compra
-router.get("/admin/compras/new", (req, res) => {
+router.get("/admin/compras/new", adminAuth,(req, res) => {
     Produto.findAll().then(produtos => {
         res.render("admin/compras/new", { produtos: produtos });
     }).catch(error => {
@@ -39,7 +39,7 @@ router.get("/admin/compras/new", (req, res) => {
 
 
 //rota para salvar nova compra no banco
-router.post("/compras/save", (req, res) => {
+router.post("/compras/save", adminAuth,(req, res) => {
 
     var produtoId = req.body.produto;
     var quantidade = req.body.quantidade;
